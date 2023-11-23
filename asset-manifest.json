@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react_grocery_deploy_gh/static/css/main.3095b538.css",
+    "main.js": "/react_grocery_deploy_gh/static/js/main.d9e6761e.js",
+    "index.html": "/react_grocery_deploy_gh/index.html",
+    "main.3095b538.css.map": "/react_grocery_deploy_gh/static/css/main.3095b538.css.map",
+    "main.d9e6761e.js.map": "/react_grocery_deploy_gh/static/js/main.d9e6761e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3095b538.css",
+    "static/js/main.d9e6761e.js"
+  ]
+}
