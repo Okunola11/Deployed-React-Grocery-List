@@ -1,6 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
-function Footer({ length }) {
+type PropsType = {
+  length: number;
+};
+
+function Footer({ length }: PropsType): ReactElement {
   return (
     <footer>
       <p>

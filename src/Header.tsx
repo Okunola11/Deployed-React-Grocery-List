@@ -1,6 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
-const Header = ({ title }) => {
+type PropsType = {
+  title: string;
+};
+
+const Header = ({ title }: PropsType): ReactElement => {
   /* const headerStyle = {
     backgroundColor: "mediumblue",
     color: "#fff",

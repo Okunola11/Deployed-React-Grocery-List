@@ -1,3 +1,4 @@
+import React, { ChangeEvent } from "react";
 import Header from "./Header";
 import SearchItem from "./SearchItem";
 import AddItem from "./AddItem";
@@ -5,10 +6,21 @@ import Contents from "./Contents";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 
+type Item = {
+  id: number;
+  checked: Boolean;
+  item: string;
+};
+
+type ItemsArray = Item[];
+
 function App() {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("groceries")) || []
-  );
+  const storedItems = localStorage.getItem("groceries");
+  const initializedItems: ItemsArray = storedItems
+    ? JSON.parse(storedItems)
+    : [];
+
+  const [items, setItems] = useState<ItemsArray>(initializedItems);
   const [newItem, setNewItem] = useState("");
   const [search, setSearch] = useState("");
 
@@ -16,26 +28,26 @@ function App() {
     localStorage.setItem("groceries", JSON.stringify(items));
   }, [items]);
 
-  const addItem = (item) => {
-    const id = items.length ? items[items.length - 1].id + 1 : 1;
-    const myNewItem = { id, checked: false, item };
-    const listItems = [...items, myNewItem];
+  const addItem = (item: string) => {
+    const id: number = items.length ? items[items.length - 1].id + 1 : 1;
+    const myNewItem: Item = { id, checked: false, item };
+    const listItems: ItemsArray = [...items, myNewItem];
     setItems(listItems);
   };
 
-  const handleCheck = (id) => {
+  const handleCheck = (id: number) => {
     const listItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setItems(listItems);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (!newItem) return;
     addItem(newItem);
