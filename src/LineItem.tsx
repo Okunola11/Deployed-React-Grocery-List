@@ -1,7 +1,18 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { Item } from "./App";
 
-const LineItem = ({ item, handleCheck, handleDelete }) => {
+type PropsType = {
+  item: Item;
+  handleCheck: (id: number) => void;
+  handleDelete: (id: number) => void;
+};
+
+const LineItem = ({
+  item,
+  handleCheck,
+  handleDelete,
+}: PropsType): ReactElement => {
   return (
     <li className="item">
       <input
@@ -10,7 +21,7 @@ const LineItem = ({ item, handleCheck, handleDelete }) => {
         checked={item.checked}
       />
       <label
-        style={item.checked ? { textDecoration: "line-through" } : null}
+        style={item.checked ? { textDecoration: "line-through" } : undefined}
         onDoubleClick={() => handleCheck(item.id)}
       >
         {item.item}
@@ -18,7 +29,7 @@ const LineItem = ({ item, handleCheck, handleDelete }) => {
       <FaTrashAlt
         onClick={() => handleDelete(item.id)}
         role="button"
-        tabIndex="0"
+        tabIndex={Number(0)}
         aria-label={`Delete ${item.item}`}
       />
     </li>

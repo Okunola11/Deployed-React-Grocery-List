@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { FormEvent } from "react";
 import Header from "./Header";
 import SearchItem from "./SearchItem";
 import AddItem from "./AddItem";
@@ -6,13 +6,13 @@ import Contents from "./Contents";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 
-type Item = {
+export type Item = {
   id: number;
-  checked: Boolean;
+  checked: boolean;
   item: string;
 };
 
-type ItemsArray = Item[];
+export type ItemsArray = Item[];
 
 function App() {
   const storedItems = localStorage.getItem("groceries");
@@ -47,7 +47,7 @@ function App() {
     setItems(listItems);
   };
 
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newItem) return;
     addItem(newItem);

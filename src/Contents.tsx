@@ -1,6 +1,14 @@
+import React from "react";
 import ItemList from "./ItemList";
+import { ItemsArray } from "./App";
 
-const Contents = ({ items, handleCheck, handleDelete }) => {
+type PropsType = {
+  items: ItemsArray;
+  handleCheck: (id: number) => void;
+  handleDelete: (id: number) => void;
+};
+
+const Contents = ({ items, handleCheck, handleDelete }: PropsType) => {
   return (
     <>
       {items.length ? (

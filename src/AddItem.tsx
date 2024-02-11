@@ -1,9 +1,19 @@
-import React from "react";
+import React, { ReactElement, FormEvent, LegacyRef } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useRef } from "react";
 
-const AddItem = ({ newItem, setNewItem, handleSubmit }) => {
-  const inputRef = useRef();
+type PropsType = {
+  newItem: string;
+  setNewItem: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+};
+
+const AddItem = ({
+  newItem,
+  setNewItem,
+  handleSubmit,
+}: PropsType): ReactElement => {
+  const inputRef: LegacyRef<HTMLInputElement> = useRef<HTMLInputElement>(null);
 
   return (
     <form className="addForm" onSubmit={handleSubmit} action="">
@@ -21,7 +31,7 @@ const AddItem = ({ newItem, setNewItem, handleSubmit }) => {
       <button
         type="submit"
         aria-label="Add Item"
-        onClick={() => inputRef.current.focus()}
+        onClick={() => (inputRef.current ? inputRef.current.focus() : null)}
       >
         <FaPlus />
       </button>
